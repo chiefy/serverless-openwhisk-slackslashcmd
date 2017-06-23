@@ -1,0 +1,16 @@
+{
+  "name": "slashquote",
+  "version": "1.0.0",
+  "description": "Example openwhisk/serverless slack command",
+  "main": "handler.js",
+  "scripts": {
+    "postinstall": "npm link serverless-openwhisk"
+  },
+  "keywords": [
+    "serverless",
+    "openwhisk"
+  ],
+  "dependencies": {
+    "unirest": "^0.5.1"
+  }
+}

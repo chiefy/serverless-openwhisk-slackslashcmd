@@ -1,0 +1,30 @@
+service: slashcmds
+
+package:
+  include:
+    - lib/**
+  exclude:
+    - README.md
+    - Makefile
+
+provider:
+  name: openwhisk
+  memory: 128
+  runtime: nodejs:default
+  timeout: 5
+
+custom: ${file(./config.yml)}
+
+functions:
+  quote:
+    handler: handler.quote
+    description: Gets a random famous quote and returns in Slack message JSON
+    annotations:
+      web-export: true
+      final: true
+    parameters:
+      slack_token: ${self:custom.slack_token}
+      mashape_api_key: ${self:custom.mashape_api_key}
+
+plugins:
+  - serverless-openwhisk
