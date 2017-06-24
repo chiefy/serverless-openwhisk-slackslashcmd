@@ -16,6 +16,14 @@ This project is a simple example of creating a serverless/openwhisk-based functi
 
 In order to deploy this project to OpenWhisk, you will need to follow the [quickstart guide](https://serverless.com/framework/docs/providers/openwhisk/guide/quick-start/).
 
+## Mashape API Key
+
+You will need a [Mashape](https://market.mashape.com) API key, signup and export your key:
+
+```
+$ export MASHAPE_API_KEY=<your-mashape-api-key>
+```
+
 ## Initial Slack Setup
 
 ![slack setup](https://github.com/chiefy/slashquotr/raw/master/img/slack-setup.png)
@@ -34,3 +42,6 @@ To deploy the project after OpenWhisk setup is complete:
 $ make deploy
 ```
 
+## Post-deploy
+
+Go back to the Slack slash command editing page and insert the URL for your web action.
