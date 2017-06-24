@@ -1,66 +1,36 @@
-# Serverless OpenWhisk Node.js Template
+# Serverless Framework Openwhisk Slack Slash Command Example
 
-Hello! 😎
+This project is a simple example of creating a serverless/openwhisk-based function to be invoked by a Slack slash command. For this example, we will be using a free API to get a [random famous quote via Mashape](https://market.mashape.com/andruxnet/random-famous-quotes).
 
-This is a template Node.js service for the OpenWhisk platform. Before you can deploy your service, please follow the instructions below…
+![example usage](https://github.com/chiefy/slashquotr/img/slack-ex.png)
 
-### Have you set up your account credentials?
+## Requirements
 
-Before you can deploy your service to OpenWhisk, you need to have an account registered with the platform.
+* Node (>=6.x)
+* [npm](https://npmjs.com)
+* [serverless framework](https://serverless.com/)
+* [IBM Bluemix Account](https://console.bluemix.net/registration/) (free for 30 days)
+* [`wsk` cli utility](https://github.com/apache/incubator-openwhisk/blob/master/docs/cli.md)
 
-- *Want to run the platform locally?* Please read the project's [*Quick Start*](https://github.com/openwhisk/openwhisk#quick-start) guide for deploying it locally.
-- *Want to use a hosted provider?* Please sign up for an account with [IBM Bluemix](https://console.ng.bluemix.net/) and then follow the instructions for getting access to [OpenWhisk on Bluemix](https://console.ng.bluemix.net/openwhisk/). 
+## Openwhisk Setup
 
-Account credentials for OpenWhisk can be provided through a configuration file or environment variables. This plugin requires the API endpoint, namespace and authentication credentials.
+In order to deploy this project to OpenWhisk, you will need to follow the [quickstart guide](https://serverless.com/framework/docs/providers/openwhisk/guide/quick-start/).
 
-**Do you want to use a configuration file for storing these values?** Please [follow the instructions](https://console.ng.bluemix.net/openwhisk/cli) for setting up the OpenWhisk command-line utility. This tool stores account credentials in the `.wskprops` file in the user's home directory. The plugin automatically extracts credentials from this file at runtime.  No further configuration is needed.
+## Initial Slack Setup
 
-**Do you want to use environment variables for credentials?** Use the following environment variables to be pass in account credentials. These values override anything extracted from the configuration file.
+![slack setup](https://github.com/chiefy/slashquotr/img/slack-setup.png)
 
-- *OW_APIHOST* - Platform endpoint, e.g. `openwhisk.ng.bluemix.net`
-- *OW_AUTH* - Authentication key, e.g. `xxxxxx:yyyyy
-
-
-
-### Have you installed and setup the provider plugin?
-
-Using the framework with the OpenWhisk platform needs you to install the provider plugin and link this to your service. 
-
-####  Install the provider plugin
+Create a new Slack slash command for your Slack team. Make note of the secret token. Set the method to `GET` and keep the window open, we will fill in our OpenWhisk web action's URL after deployment.
 
 ```
-$ npm install --global serverless-openwhisk
+$ export SLACK_TOKEN=<your-slack-slash-cmd-token>
 ```
 
-*Due to an [outstanding issue](https://github.com/serverless/serverless/issues/2895) with provider plugins, the [OpenWhisk provider](https://github.com/serverless/serverless-openwhisk) must be installed as a global module.*
+## Deployment
 
-
-#### Link provider plugin to service directory
-
-Using `npm link` will import the provider plugin into the service directory. Running `npm install` will automatically perform this using a `post install` script.
+To deploy the project after OpenWhisk setup is complete:
 
 ```
-$ npm link serverless-openwhisk
-or
-$ npm install
+$ make deploy
 ```
 
-
-
-**_…and that's it!_**
-
-### Deploy Service
-
-Use the `serverless` command to deploy your service. The sample `handler.js` file can be deployed without modification.
-
-```shell
-serverless deploy
-```
-
-
-
-### Issues / Feedback / Feature Requests?
-
-If you have any issues, comments or want to see new features, please file an issue in the project repository:
-
-https://github.com/serverless/serverless-openwhisk
